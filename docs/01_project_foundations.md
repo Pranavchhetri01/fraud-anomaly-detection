@@ -91,11 +91,116 @@ The final model must balance these two types of errors according to the company'
 
 > A digital-payment company processes a large number of daily transactions that cannot all be inspected manually. The company requires a system that assigns fraud-risk scores to transactions and flags suspicious activity for investigation. This project will develop and compare supervised fraud-detection and unsupervised anomaly-detection models while considering class imbalance, false alarms, missed fraud, explainability and business costs.
 
+## 1.2 Machine-Learning Problem Formulation
+
+### Unit of Observation
+
+The unit of observation is an individual financial transaction. Each row of the dataset represents one transaction, and the system will generate a risk assessment for each transaction.
+
+### Input Features
+
+The model inputs are represented by `X`. These may include transaction amount, transaction type, sender balance, recipient balance and engineered behavioural features.
+
+Only information available when the transaction occurs should be used for prediction. Using information created after the fraud outcome becomes known could cause data leakage.
+
+### Target Variable
+
+The supervised model's target variable is represented by `y`.
+
+- `0`: legitimate transaction
+- `1`: fraudulent transaction
+
+### Supervised-Learning Task
+
+The supervised component is a binary classification problem. It will learn from transactions with known labels and estimate the probability that a new transaction is fraudulent.
+
+The relationship can be represented as:
+
+`Transaction features (X) → Fraud probability → Predicted class`
+
+### Unsupervised-Learning Task
+
+The unsupervised component will analyse transaction features without using fraud labels during training. It will assign an anomaly score representing how unusual each transaction appears compared with other transactions.
+
+The relationship can be represented as:
+
+`Transaction features (X) → Anomaly score`
+
+Known fraud labels may subsequently be used to evaluate whether anomalous transactions correspond to actual fraud.
+
+### Intended Model Output
+
+The completed system should produce:
+
+- A fraud probability from the supervised model
+- An anomaly score from the unsupervised model
+- A risk classification
+- A recommendation to approve or investigate the transaction
+- An explanation of the factors influencing high-risk predictions
+
+### Prediction Setting
+
+The project will simulate transaction-level fraud screening using historical data. In a real deployment, the trained system could score transactions close to the time at which they occur.
+
+
+## 1.3 Project Scope
+
+### Scope Definition
+
+This project focuses on transaction-level fraud detection and anomaly detection for a fictional digital-payment company.
+
+The system will analyse historical financial transactions and estimate the risk associated with each individual transaction. It will support fraud investigators by prioritising potentially suspicious transactions rather than making final legal or regulatory decisions.
+
+### In Scope
+
+The project will include:
+
+- Understanding and exploring financial transaction data
+- Detecting fraudulent transactions using supervised classification
+- Detecting unusual transactions using unsupervised anomaly detection
+- Assigning fraud probabilities and anomaly scores
+- Investigating class imbalance
+- Comparing sampling and class-weighting techniques
+- Engineering behavioural and historical features when supported by the data
+- Comparing several machine-learning algorithms
+- Evaluating precision, recall, F1-score, ROC-AUC and PR-AUC
+- Analysing false positives and false negatives
+- Selecting decision thresholds using model performance and business costs
+- Explaining model predictions
+- Developing an interactive fraud-monitoring application
+- Maintaining a reproducible project using Git and GitHub
+- Exploring scalable processing as an optional extension
+
+### Out of Scope
+
+The initial project will not include:
+
+- Integration with a real banking or payment-production system
+- Real-time blocking of financial transactions
+- Facial, fingerprint or other biometric recognition
+- Cybersecurity network-intrusion detection
+- Automatic closure of customer accounts
+- Automatic submission of regulatory reports
+- Use of identifiable or confidential customer information
+- Cryptocurrency, insurance, loan-application or employee fraud
+- Claims that an anomaly automatically proves criminal activity
+
+### Intended Use
+
+The model is intended as a decision-support tool. A high-risk prediction should trigger additional verification or investigation rather than automatically establish that fraud occurred.
+
+### Dataset Limitations
+
+The indicators that can be implemented will depend on the available dataset columns. Features such as device changes, account age, location anomalies and authentication failures can only be developed if the dataset contains the necessary information.
+
+The project will not invent unavailable customer information. Any unavailable real-world indicators will be discussed as possible future improvements.
+
+
 ## Phase 1 Progress
 
 - [x] 1.1 Define the business problem
-- [ ] 1.2 Convert the business problem into a machine-learning problem
-- [ ] 1.3 Define the project scope
+- [x] 1.2 Convert the business problem into a machine-learning problem
+- [x] 1.3 Define the project scope
 - [ ] 1.4 Establish success criteria
 - [ ] 1.5 Compare and select datasets
 - [ ] 1.6 Consider privacy, ethics and limitations
