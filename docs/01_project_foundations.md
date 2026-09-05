@@ -252,6 +252,118 @@ After baseline evaluation, measurable targets will be selected using:
 
 The final model should improve meaningfully on the baseline without creating an operationally unmanageable number of alerts.
 
+## 1.4 Success Criteria
+
+### Definition of Success
+
+The project will be considered successful if it produces a reproducible and explainable system that performs meaningfully better than a simple baseline model while balancing fraud detection against unnecessary alerts.
+
+Because fraudulent transactions are expected to represent a small minority of the dataset, overall accuracy will not be treated as the primary measure of success. A model that predicts every transaction as legitimate could achieve high accuracy while detecting no fraud.
+
+### Primary Evaluation Criteria
+
+The main technical criteria will include:
+
+- **Recall:** the proportion of actual fraudulent transactions detected
+- **Precision:** the proportion of fraud alerts that correspond to actual fraud
+- **F1-score:** a combined measure of precision and recall
+- **PR-AUC:** performance across precision-recall trade-offs
+- **False-positive volume:** the number of legitimate transactions incorrectly flagged
+- **False negatives:** the number of fraudulent transactions missed
+- **Alert volume:** the number of transactions requiring investigation
+- **Estimated financial cost:** the combined impact of missed fraud and false alerts
+
+### Operational Criteria
+
+The system should:
+
+- Produce understandable fraud probabilities or anomaly scores
+- Support threshold selection based on investigation capacity
+- Apply consistent data-processing steps
+- Avoid data leakage
+- Provide explanations for high-risk predictions
+- Produce outputs that can be understood by fraud investigators
+
+### Project-Quality Criteria
+
+The repository should:
+
+- Use a clear and reproducible folder structure
+- Record meaningful development milestones with Git
+- Include understandable documentation
+- Separate exploratory notebooks from reusable Python code
+- Include appropriate tests
+- Provide instructions for running the final application
+
+### Provisional Nature of Targets
+
+Exact numerical targets will not be established before the dataset and baseline model have been examined.
+
+After baseline evaluation, measurable targets will be selected using:
+
+- The observed fraud rate
+- Baseline model performance
+- The cost of missed fraud
+- The cost of false alerts
+- The number of alerts investigators can review
+
+The final model should improve meaningfully on the baseline without creating an operationally unmanageable number of alerts.
+
+
+## 1.5 Dataset Selection
+
+### Candidate Datasets
+
+Three public datasets were considered:
+
+1. The ULB Credit Card Fraud Detection dataset
+2. The BankSim bank-payment simulation dataset
+3. The PaySim mobile-money simulation dataset
+
+The ULB dataset contains real anonymised transactions and is suitable for studying severe class imbalance. However, most features are anonymised, and the dataset does not provide customer identifiers required for customer-level historical analysis.
+
+PaySim contains understandable sender, recipient, balance and transaction-type information. However, its size makes it better suited to a later large-data extension.
+
+### Selected Primary Dataset
+
+BankSim was selected as the primary dataset.
+
+BankSim is a synthetic bank-payment dataset designed for fraud-detection research. It contains approximately 594,643 transactions, including approximately 7,200 fraudulent transactions.
+
+It includes customer identifiers, merchant identifiers, transaction categories, transaction amounts, time steps and historical fraud labels.
+
+### Reasons for Selection
+
+BankSim was selected because:
+
+- Its size is manageable on the available local computer.
+- It contains interpretable features.
+- It represents an imbalanced fraud-detection problem.
+- Customer identifiers permit behavioural feature engineering.
+- Time steps allow previous activity to be separated from future activity.
+- Merchant and category variables support meaningful analysis.
+- It contains labels for supervised learning.
+- The labels can be withheld during unsupervised anomaly detection.
+- It contains no directly identifiable real customer information.
+
+### Planned Dataset Usage
+
+The datasets will be used in the following order:
+
+1. BankSim will support the main end-to-end project.
+2. The ULB Credit Card Fraud dataset may provide a secondary benchmark.
+3. PaySim may be used as an optional large-scale extension.
+
+Additional datasets will only be introduced after the primary BankSim project is complete.
+
+### Dataset Limitations
+
+BankSim is synthetic and cannot perfectly represent every real financial institution.
+
+It does not provide all signals used by real-world fraud systems, such as device fingerprints, login attempts, account creation dates, precise locations and investigator notes.
+
+The project will only implement indicators supported by the available data and will clearly distinguish demonstrated capabilities from proposed future extensions.
+
 
 ## Phase 1 Progress
 
@@ -259,5 +371,5 @@ The final model should improve meaningfully on the baseline without creating an 
 - [x] 1.2 Convert the business problem into a machine-learning problem
 - [x] 1.3 Define the project scope
 - [x] 1.4 Establish success criteria
-- [ ] 1.5 Compare and select datasets
+- [x] 1.5 Compare and select datasets
 - [ ] 1.6 Consider privacy, ethics and limitations
