@@ -195,12 +195,69 @@ The indicators that can be implemented will depend on the available dataset colu
 
 The project will not invent unavailable customer information. Any unavailable real-world indicators will be discussed as possible future improvements.
 
+## 1.4 Success Criteria
+
+### Definition of Success
+
+The project will be considered successful if it produces a reproducible and explainable system that performs meaningfully better than a simple baseline model while balancing fraud detection against unnecessary alerts.
+
+Because fraudulent transactions are expected to represent a small minority of the dataset, overall accuracy will not be treated as the primary measure of success. A model that predicts every transaction as legitimate could achieve high accuracy while detecting no fraud.
+
+### Primary Evaluation Criteria
+
+The main technical criteria will include:
+
+- **Recall:** the proportion of actual fraudulent transactions detected
+- **Precision:** the proportion of fraud alerts that correspond to actual fraud
+- **F1-score:** a combined measure of precision and recall
+- **PR-AUC:** performance across precision-recall trade-offs
+- **False-positive volume:** the number of legitimate transactions incorrectly flagged
+- **False negatives:** the number of fraudulent transactions missed
+- **Alert volume:** the number of transactions requiring investigation
+- **Estimated financial cost:** the combined impact of missed fraud and false alerts
+
+### Operational Criteria
+
+The system should:
+
+- Produce understandable fraud probabilities or anomaly scores
+- Support threshold selection based on investigation capacity
+- Apply consistent data-processing steps
+- Avoid data leakage
+- Provide explanations for high-risk predictions
+- Produce outputs that can be understood by fraud investigators
+
+### Project-Quality Criteria
+
+The repository should:
+
+- Use a clear and reproducible folder structure
+- Record meaningful development milestones with Git
+- Include understandable documentation
+- Separate exploratory notebooks from reusable Python code
+- Include appropriate tests
+- Provide instructions for running the final application
+
+### Provisional Nature of Targets
+
+Exact numerical targets will not be established before the dataset and baseline model have been examined.
+
+After baseline evaluation, measurable targets will be selected using:
+
+- The observed fraud rate
+- Baseline model performance
+- The cost of missed fraud
+- The cost of false alerts
+- The number of alerts investigators can review
+
+The final model should improve meaningfully on the baseline without creating an operationally unmanageable number of alerts.
+
 
 ## Phase 1 Progress
 
 - [x] 1.1 Define the business problem
 - [x] 1.2 Convert the business problem into a machine-learning problem
 - [x] 1.3 Define the project scope
-- [ ] 1.4 Establish success criteria
+- [x] 1.4 Establish success criteria
 - [ ] 1.5 Compare and select datasets
 - [ ] 1.6 Consider privacy, ethics and limitations
