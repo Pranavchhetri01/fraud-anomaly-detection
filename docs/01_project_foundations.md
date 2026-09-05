@@ -365,6 +365,82 @@ It does not provide all signals used by real-world fraud systems, such as device
 The project will only implement indicators supported by the available data and will clearly distinguish demonstrated capabilities from proposed future extensions.
 
 
+## 1.6 Ethics, Privacy and Limitations
+
+### Decision Support
+
+The model will be treated as a decision-support tool rather than proof that a customer committed fraud.
+
+A high fraud probability or anomaly score should trigger additional checks or human investigation. It should not automatically establish criminal intent.
+
+### False-Positive Harm
+
+Incorrectly flagging a legitimate transaction may:
+
+- Interrupt access to funds
+- Delay important payments
+- Cause customer stress or embarrassment
+- Increase investigation costs
+- Reduce trust in the institution
+
+Model evaluation will therefore consider customer impact and operational consequences in addition to predictive performance.
+
+### Bias and Fairness
+
+The BankSim dataset includes demographic attributes such as age and gender. These variables may create or reproduce unfair differences between customer groups.
+
+The project will investigate:
+
+- Whether sensitive attributes should be used as predictive features
+- Whether model performance differs across available demographic groups
+- Whether false-positive and false-negative rates differ across groups
+- Whether other variables may act as proxies for sensitive characteristics
+
+Removing a sensitive variable does not automatically guarantee fairness because related variables may still indirectly represent it.
+
+### Privacy
+
+Financial transaction data can reveal sensitive information about customers and their behaviour.
+
+The selected primary dataset is synthetic and uses anonymised identifiers. The project will not attempt to identify real individuals or combine the dataset with external personal information.
+
+Passwords, API keys, authentication tokens and confidential information must not be committed to GitHub.
+
+### Explainability
+
+The final system should provide understandable reasons for high-risk predictions. Investigators should be able to identify which available features influenced a transaction's risk score.
+
+### Dataset Limitations
+
+BankSim is a synthetic simulation and cannot fully represent a modern financial institution.
+
+Its limitations include:
+
+- Simulated rather than directly observed customer behaviour
+- Potentially simplified fraud patterns
+- Absence of device, login and precise location information
+- Limited representation of evolving fraud strategies
+- Possible simulator-specific patterns
+- No guarantee that performance will transfer to real banking data
+
+### Label Limitations
+
+Historical fraud labels may be incomplete or imperfect. Some fraudulent activity may remain undiscovered, while some legitimate transactions may be incorrectly labelled.
+
+This possibility will be recognised when interpreting model performance.
+
+### Model Drift
+
+Fraud strategies and customer behaviour change over time. A production system would require continuous monitoring, periodic evaluation and retraining.
+
+The project will not claim that a model trained on historical synthetic data is permanently reliable or ready for direct production deployment.
+
+### Responsible Reporting
+
+Project findings will be reported as experimental results on the selected dataset. Performance metrics will not be presented as guaranteed real-world banking outcomes.
+
+
+
 ## Phase 1 Progress
 
 - [x] 1.1 Define the business problem
@@ -372,4 +448,5 @@ The project will only implement indicators supported by the available data and w
 - [x] 1.3 Define the project scope
 - [x] 1.4 Establish success criteria
 - [x] 1.5 Compare and select datasets
-- [ ] 1.6 Consider privacy, ethics and limitations
+- [x] 1.6 Consider privacy, ethics and limitations
+## Phase 1 is complete. Phase 2—project and environment setup—is next.
